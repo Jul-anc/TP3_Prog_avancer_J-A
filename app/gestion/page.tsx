@@ -15,7 +15,7 @@ import {
   deleteProfil,
 } from "./actions";
  
-
+export const instant = false;
 export default async function GestionPage() {
   
 await connection();
