@@ -7,7 +7,7 @@ export default function Home() {
       <section className="homeHero">
         <div className="homeHeroContent">
 
-          <h1>Bienvenue au Collège ABC</h1>
+          <h1>Bienvenue au Collège ABC TEST DEPLOYEMENT</h1>
 
           <p>
             Découvrez nos programmes, nos étudiants et notre environnement
