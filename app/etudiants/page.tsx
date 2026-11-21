@@ -1,7 +1,17 @@
+
 import { prisma } from "@/lib/prisma";
+import { connection } from "next/server";
 
 export default async function Etudiants() {
-  const etudiants = await prisma.etudiant.findMany();
+  // Demande à Next.js de générer cette page à chaque requête
+  await connection();
+
+  // Récupération des étudiants et de leurs formations dans TiDB
+  const etudiants = await prisma.etudiant.findMany({
+    include: {
+      formations: true,
+    },
+  });
 
   return (
     <section className="studentsPage">
