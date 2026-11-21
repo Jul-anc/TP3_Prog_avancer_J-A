@@ -1,21 +1,7 @@
-export default function Etudiants() {
-  const etudiants = [
-    {
-      id: 1,
-      nom: "Amine",
-      programme: "Informatique",
-    },
-    {
-      id: 2,
-      nom: "Sophie",
-      programme: "Administration",
-    },
-    {
-      id: 3,
-      nom: "Lucas",
-      programme: "Sciences",
-    },
-  ];
+import { prisma } from "@/lib/prisma";
+
+export default async function Etudiants() {
+  const etudiants = await prisma.etudiant.findMany();
 
   return (
     <section className="studentsPage">
@@ -44,7 +30,7 @@ export default function Etudiants() {
 
             <p>
               Programme :
-              <strong> {etudiant.programme}</strong>
+              <strong> {etudiant.nomProgramme}</strong>
             </p>
 
           </div>

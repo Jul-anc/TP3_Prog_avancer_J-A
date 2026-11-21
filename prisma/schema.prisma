@@ -27,7 +27,7 @@ model Cours {
 model Etudiant {
   id         Int         @id @default(autoincrement())
   nom        String
-
+  nomProgramme String
   profil     Profil?
   formations Formation[]
 }
