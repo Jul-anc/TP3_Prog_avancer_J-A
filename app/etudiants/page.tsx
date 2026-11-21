@@ -1,24 +1,34 @@
+
 import { Suspense } from "react";
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 async function ListeEtudiants() {
-  const etudiants = await prisma.etudiant.findMany();
+  await connection();
+
+  const etudiants = await prisma.etudiant.findMany({
+    orderBy: { id: "desc" },
+  });
 
   return (
     <div className="studentsCards">
-      {etudiants.map((etudiant) => (
-        <div className="studentCard" key={etudiant.id}>
-          <div className="studentAvatar">
-            {etudiant.nom.charAt(0)}
+      {etudiants.length === 0 ? (
+        <p>Aucun étudiant enregistré.</p>
+      ) : (
+        etudiants.map((etudiant) => (
+          <div className="studentCard" key={etudiant.id}>
+            <div className="studentAvatar">
+              {etudiant.nom.charAt(0)}
+            </div>
+
+            <h2>{etudiant.nom}</h2>
+
+            <p>
+              Programme : <strong>{etudiant.nomProgramme}</strong>
+            </p>
           </div>
-
-          <h2>{etudiant.nom}</h2>
-
-          <p>
-            Programme : <strong>{etudiant.nomProgramme}</strong>
-          </p>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 }
