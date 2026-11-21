@@ -179,6 +179,18 @@ export default async function GestionPage() {
                 </div>
 
                 <div>
+                  <label htmlFor="nomProgramme" className={labelStyle}>Programme</label>
+                  <input
+                    id="nomProgramme"
+                    name="nomProgramme"
+                    type="text"
+                    placeholder="Nom du programme"
+                    className={inputStyle}
+                    required
+                  />
+                </div>
+
+                <div>
                   <label htmlFor="formations" className={labelStyle}>Formations</label>
                   <select
                     id="formations"
@@ -431,6 +443,9 @@ export default async function GestionPage() {
                       <h3 className="mt-2 text-xl font-bold text-slate-800">
                         {etudiant.nom}
                       </h3>
+                      <p className="mt-2 text-sm text-slate-500">
+                        Programme : <strong>{etudiant.nomProgramme}</strong>
+                      </p>
                     </div>
 
                     <form action={updateEtudiantAction} className="space-y-5">
@@ -444,6 +459,17 @@ export default async function GestionPage() {
                           type="text"
                           name="nom"
                           defaultValue={etudiant.nom}
+                          className={inputStyle}
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className={labelStyle}>Programme</label>
+                        <input
+                          type="text"
+                          name="nomProgramme"
+                          defaultValue={etudiant.nomProgramme}
                           className={inputStyle}
                           required
                         />
